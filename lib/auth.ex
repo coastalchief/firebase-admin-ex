@@ -41,6 +41,18 @@ defmodule FirebaseAdminEx.Auth do
   # create_user
   # update_user
   # import_users
+  
+  @doc """
+  Create an anonymous user
+  """
+  @spec create_anonymous_user(String.t() | nil) :: tuple()
+  def create_anonymous_user(client_email \\ nil),
+      do:
+        do_request(
+          "signupNewUser",
+          %{:returnSecureToken => true},
+          client_email
+        )
 
   @doc """
   Create an email/password user
