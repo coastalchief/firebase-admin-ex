@@ -92,14 +92,14 @@ defmodule FirebaseAdminEx.Auth do
   Generates request to verify password reset code
   """
   def verify_password_code(
-        %{"oobCode" => oobCode},
+        oobCode,
         client_email \\ nil,
 		project_id
       ),
       do:
         do_request(
           "accounts:resetPassword",
-          %{:oobCode => oobCode},
+          %{"oobCode" => oobCode},
           client_email,
 		  project_id
         )
