@@ -88,10 +88,8 @@ defmodule FirebaseAdminEx.Auth do
     end
   end
   
-  def verify_password_code(action_code_settings, client_email, project_id) do
-    with {:ok, action_code_settings} <- ActionCodeSettings.validate(action_code_settings) do
-      do_request("accounts:resetPassword", action_code_settings, client_email, project_id)
-    end
+  def verify_password_code(code, client_email, project_id) do
+	  do_request("accounts:resetPassword", code, client_email, project_id)
   end
   
   defp do_request(url_suffix, payload, client_email, project_id) do
