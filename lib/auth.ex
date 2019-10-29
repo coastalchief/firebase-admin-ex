@@ -88,8 +88,8 @@ defmodule FirebaseAdminEx.Auth do
     end
   end
   
-  def verify_password_code(code, client_email, project_id) do
-	  do_request("accounts:resetPassword", code, client_email, project_id)
+  def verify_password_code(code, client_email, project_id, api_key) do
+	  do_request("accounts:resetPassword?apiKey="<>api_key, code, client_email, project_id)
   end
   
   defp do_request(url_suffix, payload, client_email, project_id) do
