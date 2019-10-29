@@ -92,6 +92,10 @@ defmodule FirebaseAdminEx.Auth do
 	  do_request("accounts:resetPassword?apiKey="<>api_key, code, client_email, project_id)
   end
   
+  def sign_in_with_email_and_password(credentials, client_email) do
+	  do_request("accounts:signInWithPassword", credentials, client_email)
+  end
+  
   defp do_request(url_suffix, payload, client_email, project_id) do
     with {:ok, response} <-
            Request.request(
