@@ -104,8 +104,24 @@ defmodule FirebaseAdminEx.Auth do
           %{:oobCode => oob_code},
           client_email
         )
-		
-  def sign_in_with_email_and_password(%{"email" => email, "password" => password},
+
+	@doc """
+	confirms and performs password reset
+	"""
+	def confirm_password_reset(%{"oobCode" => oob_code, "password" => password},
+	      client_email \\ nil
+	    ),
+	    do:
+	      do_request(
+	        "resetPassword",
+	        %{:oobCode => oob_code, :password => password},
+	        client_email
+	      )
+
+	@doc """
+	Verifies signs user in with email and password
+	"""
+	def sign_in_with_email_and_password(%{"email" => email, "password" => password},
         client_email \\ nil
       ),
       do:
