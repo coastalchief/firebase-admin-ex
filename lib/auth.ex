@@ -80,13 +80,18 @@ defmodule FirebaseAdminEx.Auth do
   end
   
   @doc """
-  Generates the email for password reset using the action code settings provided
+  Generates the email for password reset
   """
-  def generate_reset_password_email(action_code_settings, client_email, project_id) do
-    with {:ok, action_code_settings} <- ActionCodeSettings.validate(action_code_settings) do
-      do_request("accounts:sendOobCode", action_code_settings, client_email, project_id)
-    end
-  end
+  def generate_reset_password_email(%{"email" => email},
+        client_email \\ nil
+      ),
+      do:
+        do_request(
+          "getOobConfirmationCode",
+          %{:email => email, "requestType" => "PASSWORD_RESET"},
+          client_email
+        )
+  
   
   def verify_password_code(code, client_email, project_id, api_key) do
 	  do_request("accounts:resetPassword?apiKey="<>api_key, code, client_email, project_id)
