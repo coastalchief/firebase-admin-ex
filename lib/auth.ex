@@ -92,11 +92,19 @@ defmodule FirebaseAdminEx.Auth do
           client_email
         )
   
-  
-  def verify_password_code(code, client_email, project_id, api_key) do
-	  do_request("accounts:resetPassword?apiKey="<>api_key, code, client_email, project_id)
-  end
-  
+  @doc """
+  Verifies OOB Code
+  """
+  def verify_password_code(%{"oobCode" => oob_code},
+        client_email \\ nil
+      ),
+      do:
+        do_request(
+          "resetPassword",
+          %{:oobCode => oob_code},
+          client_email
+        )
+		
   def sign_in_with_email_and_password(%{"email" => email, "password" => password},
         client_email \\ nil
       ),
