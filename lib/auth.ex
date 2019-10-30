@@ -35,11 +35,23 @@ defmodule FirebaseAdminEx.Auth do
   @spec delete_user(String.t(), String.t() | nil) :: tuple()
   def delete_user(uid, client_email \\ nil),
     do: do_request("deleteAccount", %{localId: uid}, client_email)
+	
+	
+  @doc """
+  update a user
+  """
+  def update_user(%{"idToken" => idToken, "displayName" => displayName},
+        client_email \\ nil
+      ),
+      do:
+        do_request(
+          "setAccountInfo",
+          %{:idToken => idToken, :displayName => displayName, :returnSecureToken => true},
+          client_email
+        )	
 
   # TODO: Add other commands:
   # list_users
-  # create_user
-  # update_user
   # import_users
   
   @doc """
@@ -78,6 +90,8 @@ defmodule FirebaseAdminEx.Auth do
       do_request("accounts:sendOobCode", action_code_settings, client_email, project_id)
     end
   end
+  
+  
   
   @doc """
   Generates the email for password reset
