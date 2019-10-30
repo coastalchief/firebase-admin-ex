@@ -50,6 +50,20 @@ defmodule FirebaseAdminEx.Auth do
           client_email
         )	
 
+
+	@doc """
+	change password
+	"""
+	def change_password(%{"idToken" => idToken, "password" => password, "localId" => localId},
+	      client_email \\ nil
+	    ),
+	    do:
+	      do_request(
+	        "setAccountInfo",
+	        %{:idToken => idToken, :password => password, :localId => localId, :returnSecureToken => true},
+	        client_email
+	      )	
+
   # TODO: Add other commands:
   # list_users
   # import_users
