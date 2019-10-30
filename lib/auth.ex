@@ -73,7 +73,7 @@ defmodule FirebaseAdminEx.Auth do
 	    do:
 	      do_request(
 	        "setAccountInfo",
-	        %{:idToken => idToken, email => email, :localId => localId, :returnSecureToken => true},
+	        %{:idToken => idToken, :email => email, :localId => localId, :returnSecureToken => true},
 	        client_email
 	      )	
 
