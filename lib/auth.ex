@@ -40,13 +40,13 @@ defmodule FirebaseAdminEx.Auth do
   @doc """
   update a user
   """
-  def update_user(%{"idToken" => idToken, "displayName" => displayName},
+  def update_user(%{"idToken" => idToken, "displayName" => displayName, "localId" => localId},
         client_email \\ nil
       ),
       do:
         do_request(
           "setAccountInfo",
-          %{:idToken => idToken, :displayName => displayName, :returnSecureToken => true},
+          %{:idToken => idToken, :displayName => displayName, :localId => localId, :returnSecureToken => true},
           client_email
         )	
 
