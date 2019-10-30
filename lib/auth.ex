@@ -91,6 +91,19 @@ defmodule FirebaseAdminEx.Auth do
           %{:email => email, "requestType" => "PASSWORD_RESET"},
           client_email
         )
+		
+	@doc """
+	Generates the email for confirmation
+	"""
+	def generate_confirmation_email(%{"token" => token},
+	      client_email \\ nil
+	    ),
+	    do:
+	      do_request(
+	        "getOobConfirmationCode",
+	        %{:idToken => token, "requestType" => "VERIFY_EMAIL"},
+	        client_email
+	      )	
   
   @doc """
   Verifies OOB Code
