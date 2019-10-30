@@ -121,13 +121,13 @@ defmodule FirebaseAdminEx.Auth do
 	@doc """
 	confirms and performs password reset
 	"""
-	def confirm_password_reset(%{"oobCode" => oob_code, "password" => password},
+	def confirm_password_reset(%{"oobCode" => oob_code, "newPassword" => password},
 	      client_email \\ nil
 	    ),
 	    do:
 	      do_request(
 	        "resetPassword",
-	        %{:oobCode => oob_code, :password => password},
+	        %{:oobCode => oob_code, :newPassword => password},
 	        client_email
 	      )
 
