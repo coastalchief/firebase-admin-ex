@@ -3,7 +3,7 @@ defmodule FirebaseAdminEx.Auth do
   alias FirebaseAdminEx.Auth.ActionCodeSettings
 
   @auth_endpoint "https://www.googleapis.com/identitytoolkit/v3/relyingparty/"
-  @auth_endpoint_account "https://identitytoolkit.googleapis.com/v1/accounts:"
+  @auth_endpoint_account "https://identitytoolkit.googleapis.com/v1/projects/"
   @auth_scope "https://www.googleapis.com/auth/cloud-platform"
 
   @doc """
@@ -205,7 +205,7 @@ defmodule FirebaseAdminEx.Auth do
     with {:ok, response} <-
            Request.request(
              :post,
-             @auth_endpoint_account <> url_suffix,
+             @auth_endpoint <> url_suffix,
              payload,
              auth_header(client_email)
            ),
