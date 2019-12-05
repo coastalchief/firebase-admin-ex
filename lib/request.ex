@@ -21,7 +21,8 @@ defmodule FirebaseAdminEx.Request do
   def process_request_headers(_), do: @default_headers
 
   defp process_request_body(body) when is_map(body) do
-    Jason.encode!(body)
+	IO.inspect(Jason.encode!(body))
+	Jason.encode!(body)
   end
 
   defp process_request_body(body), do: body
