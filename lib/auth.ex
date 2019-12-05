@@ -137,13 +137,13 @@ defmodule FirebaseAdminEx.Auth do
 	@doc """
 	Generates the email for confirmation
 	"""
-	def generate_confirmation_email(%{"token" => token},
+	def generate_confirmation_email(%{"email" => email},
 	      client_email \\ nil
 	    ),
 	    do:
 	      do_request(
 	        "getOobConfirmationCode",
-	        %{:idToken => token, "requestType" => "VERIFY_EMAIL"},
+	        %{:email => email, "requestType" => "VERIFY_EMAIL"},
 	        client_email
 	      )	
   
