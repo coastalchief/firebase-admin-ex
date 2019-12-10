@@ -5,7 +5,6 @@ defmodule FirebaseAdminEx.Auth do
   @auth_endpoint "https://www.googleapis.com/identitytoolkit/v3/relyingparty/"
   @auth_endpoint_account "https://identitytoolkit.googleapis.com/v1/projects/"
   @auth_scope "https://www.googleapis.com/auth/cloud-platform"
-  @auth_endpoint_accounts "https://identitytoolkit.googleapis.com/v1/accounts"
 
   @doc """
   Get a user's info by UID
@@ -206,8 +205,7 @@ defmodule FirebaseAdminEx.Auth do
     with {:ok, response} <-
            Request.request(
              :post,
-			 "#{@auth_endpoint_accounts}:#{url_suffix}",
-             # @auth_endpoint <> url_suffix,
+             @auth_endpoint <> url_suffix,
              payload,
              auth_header(client_email)
            ),
