@@ -3,13 +3,7 @@ defmodule FirebaseAdminEx.Request do
   @default_options Application.get_env(:firebase_admin_ex, :default_options, [])
 
   def request(method, url, data, headers \\ %{}) do
-  	IO.inspect(HTTPoison.request(
-        url,
-        process_request_body(data),
-        process_request_headers(headers),
-        @default_options)
-	
-	method
+    method
     |> HTTPoison.request(
       url,
       process_request_body(data),
@@ -27,6 +21,7 @@ defmodule FirebaseAdminEx.Request do
   def process_request_headers(_), do: @default_headers
 
   defp process_request_body(body) when is_map(body) do
+	IO.inspect(Jason.encode!(body))
 	Jason.encode!(body)
   end
 
