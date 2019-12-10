@@ -90,7 +90,7 @@ defmodule FirebaseAdminEx.Auth do
   def create_anonymous_user(client_email \\ nil),
       do:
         do_request(
-          "signUp",
+          "signupNewUser",
           %{:returnSecureToken => true},
           client_email
         )
