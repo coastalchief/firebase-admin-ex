@@ -7,7 +7,7 @@ defmodule FirebaseAdminEx.Request do
         url,
         process_request_body(data),
         process_request_headers(headers),
-        @default_options))
+        @default_options)
 	
 	method
     |> HTTPoison.request(
