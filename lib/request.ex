@@ -3,13 +3,21 @@ defmodule FirebaseAdminEx.Request do
   @default_options Application.get_env(:firebase_admin_ex, :default_options, [])
 
   def request(method, url, data, headers \\ %{}) do
-	  method
+	  IO.inspect(process_request_body(data))
+	  IO.puts("----")
+	  IO.inspect(process_request_headers(headers))
+	  IO.puts("----")
+	  IO.inspect(@default_options)
+	  
+	call = method
     	|> HTTPoison.request(
     	  url,
     	  process_request_body(data),
     	  process_request_headers(headers),
     	  @default_options
     	)
+	IO.inspect(call)
+	call
   end
 
   # Override the base headers with any passed in.
