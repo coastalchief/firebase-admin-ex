@@ -105,7 +105,7 @@ defmodule FirebaseAdminEx.Auth do
       ),
       do:
         do_request(
-          "signupNewUser",
+          "signUp",
           %{:email => email, :password => password, :returnSecureToken => true},
           client_email
         )
