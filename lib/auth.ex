@@ -146,9 +146,23 @@ defmodule FirebaseAdminEx.Auth do
 	        %{:idToken => token, "requestType" => "VERIFY_EMAIL"},
 	        client_email
 	      )	
+		  
+
+  @doc """
+  Verifies OOB Code for email confirmation
+  """
+  def verify_confirmation_code(%{"oobCode" => oob_code},
+        client_email \\ nil
+      ),
+      do:
+        do_request(
+          "setAccountInfo",
+          %{:oobCode => oob_code},
+          client_email
+        )
   
   @doc """
-  Verifies OOB Code
+  Verifies OOB Code for password reset
   """
   def verify_password_code(%{"oobCode" => oob_code},
         client_email \\ nil
@@ -159,6 +173,7 @@ defmodule FirebaseAdminEx.Auth do
           %{:oobCode => oob_code},
           client_email
         )
+
 
 	@doc """
 	confirms and performs password reset

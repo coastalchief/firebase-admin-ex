@@ -1,6 +1,5 @@
 defmodule FirebaseAdminEx.Response do
   def parse(%HTTPoison.Response{} = response) do
-    IO.inspect(response)
     case response do
       %HTTPoison.Response{status_code: 200, body: body} ->
         {:ok, body}
