@@ -157,7 +157,7 @@ defmodule FirebaseAdminEx.Auth do
       do:
         do_request(
           "setAccountInfo",
-          %{:oobCode => oob_code, :emailVerified => true},
+          %{:oobCode => oob_code},
           client_email
         )
   
